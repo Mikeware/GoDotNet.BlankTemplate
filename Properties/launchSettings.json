@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BlankTemplate": {
+      "commandName": "Executable",
+      "executablePath": "%GODOT4%",
+      "commandLineArgs": "--path . --verbose",
+      "workingDirectory": "."
+    }
+  }
+}
