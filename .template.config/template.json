@@ -3,15 +3,12 @@
     "author": "Mikeware",
     "classifications": [
       "Godot",
-      "CSharp",
-      "C#",
-      "Template",
-      "VS Code",
-      "Visual Studio"
+      "Game",
+      "Empty"
     ],
-    "name": "Godot C# Template (Blank)",
-    "identity": "Mikeware.Godotnet.BlankTemplate",
-    "shortName": "godotcsharp",
+    "name": "Godot C# Game Empty",
+    "identity": "Mikeware.GoDotNet.BlankTemplate",
+    "shortName": "godotnet",
     "tags": {
       "language": "C#",
       "type": "solution"

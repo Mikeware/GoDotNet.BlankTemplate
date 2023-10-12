@@ -32,11 +32,11 @@ You can set this using the Settings app in Windows:
 
 To use this template to start a new project:
 
-    dotnet new install Mikeware.Godotnet.BlankTemplate
+    dotnet new install Mikeware.GoDotNet.BlankTemplate
 
 Navigate to the parent folder where you'd like to install your project:
 
-    dotnet new godotcsharp -n YourProjectNameHere
+    dotnet new godotnet -n YourProjectNameHere
 
 You can then use the `Import` button in the Godot Project Manager to select this folder.
 
