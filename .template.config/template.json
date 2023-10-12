@@ -1,0 +1,69 @@
+{
+    "$schema": "https://json.schemastore.org/template",
+    "author": "Mikeware",
+    "classifications": [
+      "Godot",
+      "CSharp",
+      "C#",
+      "Template",
+      "VS Code",
+      "Visual Studio"
+    ],
+    "name": "Godot C# Template (Blank)",
+    "identity": "Mikeware.Godotnet.BlankTemplate",
+    "shortName": "godotcsharp",
+    "tags": {
+      "language": "C#",
+      "type": "solution"
+    },
+    "sourceName": "BlankTemplate",
+    "preferNameDirectory": true,
+    "sources": [
+      {
+        "source": "./",
+        "target": "./",
+  
+        "exclude": [
+          "readme.md",
+          "*.TXT",
+          "**/[Bb]in/**",
+          "**/[Oo]bj/**",
+          ".template.config/**/*",
+          ".git/**/*",
+          ".github/**/*",
+          ".vs/**/*"
+        ]
+      }
+    ],
+    "guids": [
+      "150C2A20-09F0-4417-A9A6-7AFC2D35AA8C"
+    ],
+    "symbols": {
+      "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "CUR_YEAR",
+        "parameters": {
+          "format": "yyyy"
+        }
+      },
+      "HttpPortGenerated": {
+        "type": "generated",
+        "generator": "port",
+        "replaces": "52475",
+        "parameters": {
+          "low": 50000,
+          "high": 59999
+        }
+      },
+      "HttpsPortGenerated": {
+        "type": "generated",
+        "generator": "port",
+        "replaces": "44386",
+        "parameters": {
+          "low": 44300,
+          "high": 44399
+        }
+      }
+    }
+  }
