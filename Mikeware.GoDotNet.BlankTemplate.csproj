@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>    
+    <PackageId>Mikeware.GoDotNet.BlankTemplate</PackageId>
+    <PackageVersion>1.0</PackageVersion>
+    <Title>Godot C# Templates Empty</Title>
+    <Authors>Mikeware</Authors>
+    <Description>A simple template setup to create a C# based project for Godot 4.x.</Description>
+    <PackageTags>dotnet-new;templates;godot;game;csharp</PackageTags>
+    <PackageProjectUrl>https://github.com/Mikeware/GoDotNet.BlankTemplate</PackageProjectUrl>
+
+    <PackageType>Template</PackageType>
+    <TargetFramework>netstandard2.0</TargetFramework>    
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.godot\**;content\**\.vs\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>
