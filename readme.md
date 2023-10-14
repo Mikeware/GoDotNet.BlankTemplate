@@ -64,4 +64,4 @@ This project template is provided as-is for you to use for any of your projects 
 
 **Note:** The `icon.svg` file is licensed by Creative Commons Attribution 4.0 International, [see here](https://godotengine.org/press/), [license text](https://creativecommons.org/licenses/by/4.0/). No changes were made.
 
-For more information about Godot's Engine license and code created with Godot, [see here](https://godotengine.org/license/)
+For more information about Godot's Engine license and code created with Godot, [see here](https://godotengine.org/license/).

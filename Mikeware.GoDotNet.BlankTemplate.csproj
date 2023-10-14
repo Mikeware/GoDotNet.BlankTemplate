@@ -7,6 +7,7 @@
     <Authors>Mikeware</Authors>
     <Description>A simple template setup to create a C# based project for Godot 4.x.</Description>
     <PackageTags>dotnet-new;templates;godot;game;csharp</PackageTags>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/Mikeware/GoDotNet.BlankTemplate</PackageProjectUrl>
 
     <PackageType>Template</PackageType>
@@ -19,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="readme.md" Pack="true" PackagePath="\"/>
     <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.godot\**;content\**\.vs\**" />
     <Compile Remove="**\*" />
   </ItemGroup>
