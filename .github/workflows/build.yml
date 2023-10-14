@@ -61,7 +61,7 @@ jobs:
           name: nuget-package
           if-no-files-found: error
           path: |
-            **/*.nupkg
+            ./bin/Release/**/*.nupkg
 
   # Tests installing, using, and uninstalling the bundled template package
   Build-New-Project:
@@ -84,8 +84,10 @@ jobs:
           path: ./template
       
       - name: Install template
-        working-directory: ./content
-        run: dotnet new install ./template/Mikeware.GoDotNet.BlankTemplate.*.nupkg # Account for version number
+        working-directory: ./
+        run: |
+          $packagefile = Get-Item ./template/Mikeware.GoDotNet.BlankTemplate.*.nupkg | Select-Object -First 1 | Split-Path -Leaf
+          dotnet new install ./template/$packagefile
 
       - name: Create new project
         working-directory: ./
@@ -93,7 +95,7 @@ jobs:
 
       - name: Build Test Game
         working-directory: ./CiTestGame
-        run: dotnet CiTestGame.sln -c Release
+        run: dotnet build CiTestGame.sln -c Release
 
       - name: Uninstall Template
         working-directory: ./
