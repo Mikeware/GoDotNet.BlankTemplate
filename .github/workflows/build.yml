@@ -1,0 +1,100 @@
+
+# https://docs.github.com/actions/using-workflows/about-workflows
+# https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions
+
+name: CI
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: ${{ '6.0.x' }}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # Builds the content of the template as-is for validation
+  Build-Project-Template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install .NET SDK v${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v3.2.0
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.0
+
+      - name: Build Template Project
+        working-directory: ./content
+        run: dotnet build BlankTemplate.sln
+
+  # Bundles the package template using dotnet pack
+  Build-Template-Package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install .NET SDK v${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v3.2.0
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.0
+
+      - name: Pack Template
+        working-directory: ./
+        run: dotnet pack -c Release
+
+      - name: Upload Package as Artifacts
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: nuget-package
+          if-no-files-found: error
+          path: |
+            **/*.nupkg
+
+  # Tests installing, using, and uninstalling the bundled template package
+  Build-New-Project:
+    needs: [Build-Template-Package]
+    runs-on: windows-latest
+
+    steps:
+      - name: Install .NET SDK v${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v3.2.0
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.0
+
+      - name: Download template nuget package artifact
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: nuget-package
+          path: ./template
+      
+      - name: Install template
+        working-directory: ./content
+        run: dotnet new install ./template/Mikeware.GoDotNet.BlankTemplate.*.nupkg # Account for version number
+
+      - name: Create new project
+        working-directory: ./
+        run: dotnet new godotnet -n CiTestGame
+
+      - name: Build Test Game
+        working-directory: ./CiTestGame
+        run: dotnet CiTestGame.sln -c Release
+
+      - name: Uninstall Template
+        working-directory: ./
+        run: dotnet new uninstall Mikeware.GoDotNet.BlankTemplate
