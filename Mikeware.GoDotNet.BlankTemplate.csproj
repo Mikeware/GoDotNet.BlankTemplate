@@ -2,11 +2,12 @@
 
   <PropertyGroup>    
     <PackageId>Mikeware.GoDotNet.BlankTemplate</PackageId>
-    <PackageVersion>1.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Title>Godot C# Templates Empty</Title>
     <Authors>Mikeware</Authors>
     <Description>A simple template setup to create a C# based project for Godot 4.x.</Description>
     <PackageTags>dotnet-new;templates;godot;game;csharp</PackageTags>
+    <PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/Mikeware/GoDotNet.BlankTemplate</PackageProjectUrl>
 
@@ -20,6 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="LICENSE.TXT" Pack="true" PackagePath="\"/>
     <None Include="readme.md" Pack="true" PackagePath="\"/>
     <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.godot\**;content\**\.vs\**" />
     <Compile Remove="**\*" />
