@@ -101,3 +101,28 @@ jobs:
       - name: Uninstall Template
         working-directory: ./
         run: dotnet new uninstall Mikeware.GoDotNet.BlankTemplate
+
+  release:
+    if: ${{ startsWith(github.ref, 'refs/heads/rel/') }}
+    needs: [Build-Template-Package]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install .NET SDK v${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v3.2.0
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Download signed packages for ${{ matrix.platform }}
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: nuget-package
+          path: ./template
+
+      - name: Push to NuGet.org
+        run: >
+          dotnet nuget push
+          ./template/**/*.nupkg
+          --source https://api.nuget.org/v3/index.json
+          --api-key ${{ secrets.NUGET_PACKAGE_PUSH_TOKEN }}
+          --skip-duplicate
