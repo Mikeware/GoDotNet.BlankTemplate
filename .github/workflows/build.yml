@@ -93,9 +93,10 @@ jobs:
         working-directory: ./
         run: dotnet new godotnet -n CiTestGame
 
+      # Godot uses the 'ExportRelease' configuration for final game builds, so we'll test that one here as a proxy.
       - name: Build Test Game
         working-directory: ./CiTestGame
-        run: dotnet build CiTestGame.sln -c Release
+        run: dotnet build CiTestGame.sln -c ExportRelease
 
       - name: Uninstall Template
         working-directory: ./
